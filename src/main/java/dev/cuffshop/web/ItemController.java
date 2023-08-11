@@ -2,6 +2,7 @@ package dev.cuffshop.web;
 
 import dev.cuffshop.domain.item.Item;
 import dev.cuffshop.repository.ItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +10,25 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @Controller
 @RequestMapping("/basic/items")
 public class ItemController {
     private final ItemRepository itemRepository;
+
+    @ModelAttribute("regions") //모델에 담기는것이 항상 보장된다.
+    public Map<String, String> regions() {
+        Map<String, String> regions = new LinkedHashMap<>(); //순서보장
+        regions.put("SEOUL", "서울");
+        regions.put("BUSAN", "부산");
+        regions.put("JEJU", "제주");
+        return regions;
+    }
+
 
     @Autowired
     public ItemController(ItemRepository itemRepository) {
@@ -43,6 +57,10 @@ public class ItemController {
 
     @PostMapping("/add")
     public String save(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+
+        log.info("item.open={}", item.getOpen());
+        log.info("item.regions={}", item.getRegions());
+
         Item saveItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", saveItem.getId());
         redirectAttributes.addAttribute("status", true);
