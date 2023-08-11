@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: common_header(~{::title},~{::link})">
+  <title>goods-list - Cuff Shop</title>
+</head>
+<body>
+  <div class="container goods-list">
+    <div class="goods-list-inner">
+      <!-- Main Header Include -->
+      <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
+      <!-- Main Header Include -->
+      <div class="goods-list-content">
+        <div class="food-type">
+          <div class="food-type-tab-inner">
+            <input type="radio" name="food-type-tabmenu" id="food-type-tab1" checked>
+            <input type="radio" name="food-type-tabmenu" id="food-type-tab2">
+            <input type="radio" name="food-type-tabmenu" id="food-type-tab3">
+            <input type="radio" name="food-type-tabmenu" id="food-type-tab4">
+            <input type="radio" name="food-type-tabmenu" id="food-type-tab5">
+            <input type="radio" name="food-type-tabmenu" id="food-type-tab6">
+            <div class="food-type-tab-btn">
+              <label for="food-type-tab1">한식/양식</label>
+              <label for="food-type-tab2">중식/일식</label>
+              <label for="food-type-tab3">동남아</label>
+              <label for="food-type-tab4">샐러드</label>
+              <label for="food-type-tab5">프리미엄</label>
+              <label for="food-type-tab6">밀키트</label>
+            </div>
+            <div class="food-type-tabs">
+               <div class="food-type-tab tab1">
+                 <th:block th:each="item : ${items}">
+                <div class="tab-item" onclick="location.href=/cuffshop/goods-detail.html"
+                     th:onclick="|location.href='@{/cuffshop/items/${item.id}}'|">
+                  <div class="thum">
+                    <img src="/images/goods-thum-01.jpg">
+                  </div>
+                  <div class="desc">
+                    <div class="badge-wish">
+                      <div class="goods-badge">
+                        <span class="badge new">new</span>
+                        <span class="badge hot">hot</span>
+                      </div>
+                      <span class="wish"></span>
+                    </div>
+                    <div class="goods-title">
+                      <h3 th:text="${item.itemName}">바다향 가득! 해산물 씨키트 해물 스파게티 밀키트(2인)</h3>
+                      <div>
+                        <span>30%</span> <b>11,760원</b> <s th:text="${item.price}">16,800원</s>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                 </th:block>
+                <div class="tab-item">
+                  <div class="thum">
+                    <img src="/images/goods-thum-02.jpg">
+                  </div>
+                  <div class="desc">
+                    <div class="badge-wish">
+                      <div class="goods-badge">
+                        <span class="badge new">new</span>
+                        <span class="badge hot">hot</span>
+                      </div>
+                      <span class="wish"></span>
+                    </div>
+                    <div class="goods-title">
+                      <h3>HACCP 인증을 받은 닭꼬치 밀키트, 굽기만 하면 끝(10개)</h3>
+                      <div>
+                        <span>20%</span> <b>18,800원</b> <s>23,500원</s>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-item">
+                  <div class="thum">
+                    <img src="/images/goods-thum-03.jpg">
+                  </div>  
+                  <div class="desc">
+                    <div class="badge-wish">
+                      <div class="goods-badge">
+                        <span class="badge new">new</span>
+                        <span class="badge hot">hot</span>
+                      </div>
+                      <span class="wish"></span>
+                    </div>
+                    <div class="goods-title">
+                      <h3>따뜻하게 먹는 저칼로리, 부드러운 닭 찜 샐러드(1인분, 270g)</h3>
+                      <div>
+                        <span>10%</span> <b>11,250원</b> <s>12,500원</s>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-item">
+                  <div class="thum">
+                    <img src="/images/goods-thum-04.jpg">
+                  </div>  
+                  <div class="desc">
+                    <div class="badge-wish">
+                      <div class="goods-badge">
+                        <span class="badge new">new</span>
+                        <span class="badge hot">hot</span>
+                      </div>
+                      <span class="wish"></span>
+                    </div>
+                    <div class="goods-title">
+                      <h3>투데이즈밀키트 시그니쳐 메뉴, 엄선한 부채살 골드라벨 스테이크(2인분)</h3>
+                      <div>
+                        <span>15%</span> <b>15,300원</b> <s>18,000원</s>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+               <div class="food-type-tab tab2">
+                <img src="https://via.placeholder.com/340x400?text=tab2">
+               </div>
+               <div class="food-type-tab tab3">
+                <img src="https://via.placeholder.com/340x400?text=tab3">
+               </div>
+               <div class="food-type-tab tab4">
+                <img src="https://via.placeholder.com/340x400?text=tab4">
+               </div>
+               <div class="food-type-tab tab5">
+                <img src="https://via.placeholder.com/340x400?text=tab5">
+               </div>
+               <div class="food-type-tab tab6">
+                <img src="https://via.placeholder.com/340x400?text=tab6">
+               </div>
+               <a href="#none" class="btn-goods-suggestion-more">더보기</a>
+            </div>
+            <div class="front-footer">
+              <h3>고객센터 080-1234-5678</h3>
+              <div class="company-link">
+                <a href="#none">회사소개</a>
+                <a href="#none">개인정보처리방침</a>
+                <a href="#none">이용약관</a>
+                <a href="#none">공지사항</a>
+              </div>
+              <div class="company-info">
+                <div class="company-info-title">
+                  <h3>(주)커프샵</h3> 
+                  <button class="btn-view-more">자세히보기</button>
+                </div>
+                <div class="company-info-more">
+                  <span>상호 : 커프샵 / 대표 : 김동석</span>
+                  <span>입점문의 : chas0302@naver.com</span>
+                  <span>광고 마케팅 문의 : chas0302@naver.com</span>
+                  <span>주소 : 전주시 완산구 완산1길 </span>
+                  <span>Copyright cuff Shop. all rights reserved.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- GNB include-->
+      <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
+      <!-- GNB include--> 
+    </div>
+  </div>
+</body>
+</html>

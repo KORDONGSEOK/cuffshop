@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: common_header(~{::title},~{::link})">
+  <title>goodsup - Cuff Shop</title>
+</head>
+<body>
+  <div class="container goodsup">
+    <div class="goodsup-inner">
+      <!-- Main Header Include -->
+      <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
+      <!-- Main Header Include -->
+      <div class="goodsup-content">
+        <div class="img-choice">
+          <label class="img-upload" for="ex_file">
+            <i class="bi bi-camera"></i>
+            <input type="file" id="ex_file">
+            <span>0/3</span>
+          </label>
+          <div class="img-list-all">
+            <div class="img-list">
+              <div class="thum">
+                <img src="/images/goods-thum-01.jpg">
+                <i class="bi bi-x-circle"></i>
+              </div>
+            </div>
+            <div class="img-list">
+              <div class="thum">
+                <img src="/images/goods-thum-01.jpg">
+                <i class="bi bi-x-circle"></i>
+              </div>
+            </div>
+            <div class="img-list">
+              <div class="thum">
+                <img src="/images/goods-thum-01.jpg">
+                <i class="bi bi-x-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>     
+        <div class="goodsup-field goods-name">
+          <span>상품명<em>*</em></span>
+          <input type="text" id="itemName" name="itemName" value="상품A" th:value="${item.itemName}" placeholder="상품명 입력">
+        </div>
+        <div class="goodsup-field catergory-choice">
+          <span>카테고리<em>*</em></span>
+          <div>
+            <label>
+              <input type="radio" name="catergory" checked>한식/중식
+            </label>
+            <label>
+              <input type="radio" name="catergory">중식/일식
+            </label>
+            <label>
+              <input type="radio" name="catergory">동남아
+            </label>
+            <label>
+              <input type="radio" name="catergory">샐러드
+            </label>
+            <label>
+              <input type="radio" name="catergory">프리미엄밀키드
+            </label>
+          </div>
+        </div>
+        <div class="goodsup-field price">
+            <span>가격(￦)<em>*</em></span>
+            <input type="text" id="price" name="price" value="10000" th:value="${item.price}" placeholder="가격입력">
+        </div>    
+        <div class="goodsup-field ratio">
+            <span>할인율(%)</span>
+            <input type="text" placeholder="할인율입력">
+        </div>
+        <div class="goodsup-field count">
+          <span>수량(개)<em>*</em></span>
+          <input type="text" id="quantity" name="quantity" value="10" th:value="${item.quantity}"  placeholder="수량입력">
+        </div>
+        <div class="goodsup-field delivery-info">
+          <span>배송정보<em>*</em></span>
+          <textarea name="" cols="30" rows="3" placeholder="배송정보 입력"></textarea>
+        </div>
+        <div class="goodsup-field board-info">
+          <span>상품정보<em>*</em></span>
+          <textarea name="" cols="30" rows="6" placeholder="게시글 내용을 작성해주세요"></textarea>
+      </div>
+        <button class="btn-primary btn-goodsup" onclick="location.href='goodseditForm.html'"
+          th:onclick="|location.href='@{/cuffshop/items/{itemId}/edit(itemId=${item.id})}'|" type="button">상품 수정</button>
+      </div>
+      <!-- GNB include-->
+      <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
+      <!-- GNB include-->
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: common_header(~{::title},~{::link})">
+  <title>goods-detail - Cuff Shop</title>
+</head>
+<body>
+  
+  <div class="container goods-detail">
+    <div class="goods-detail-inner">
+      <!-- Goods Header Include -->
+      <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
+      <!-- Goods Header Include -->
+      <div class="goods-detail-content">
+        <div class="goods-detail-slider-outer">
+          <div class="goods-detail-slider">
+            <a href="#none"><img src="/images/goods-detail-01.jpg"></a>
+            <a href="#none"><img src="/images/goods-detail-02.jpg"></a>
+            <a href="#none"><img src="/images/goods-detail-03.jpg"></a>
+            <a href="#none"><img src="/images/goods-detail-04.jpg"></a>
+          </div>
+          <button class="btn-share"><i class="bi bi-share-fill"></i></button>
+        </div>
+        <div class="goods-info">
+          <div class="goods-rating">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <em>(53)</em>
+            </div>
+          </div>
+          <div class="goods-badge">
+            <span class="badge new">new</span>
+            <span class="badge hot">hot</span>
+          </div>
+          <div class="goods-title">
+            <h3 th:value="${item.itemName}">바다향 가득! 해산물 씨키트 해물 스파게티 밀키트(2인) 1300g</h3>
+            <div>
+              <span>30%</span><b>11,760원</b><s th:value="${item.price}">16,800원</s>
+            </div>
+          </div>
+          <div class="goods-delivery-info">
+            <b>배송정보</b>
+            <div>
+              <span>5만원 이상 구매시 무료 배송</span>
+              <span>8/24(목) 도착 예정<em>(평균 배송 소요 2~3일)</em></span>
+              <span>제주, 도서, 산간 지역 15,000원 추가</span>
+            </div>
+          </div>
+          <div class="good-detail">
+            <img src="/images/goods-detail-focus-01.png">
+            <p>
+              입 안에 가득 퍼지는 풍부한 바다 향과 스파케티의 다채로운 2가지 맛의 콤비네이션
+            </p>
+            <img src="/images/goods-detail-01.jpg">
+            <p>
+              우스터소스, 간장, 꿀, 레드 와인 식초로 맛을 낸 마리네이드 소사는 풍미를 더해줄 뿐만 아니라 오징어의식감을 더욱 부드럽게 만들어줍니다.
+            </p>
+            <img src="/images/goods-detail-03.jpg">
+            <img src="/images/goods-detail-focus-02.png">
+            <img src="/images/goods-detail-04.jpg">
+            <p>
+              오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티
+            </p>
+          </div>
+          <div class="goods-accordion">
+            <div class="title active">상품후기(45)</div>
+            <div class="detail">
+              <div class="review">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <p>
+                  재료가 조금 부족하나 채워 넣으면
+                  와인도 좋지만 둘이서 소주 3병은 깝니다.
+                </p>
+                <span>fa******</span>
+              </div>
+              <div class="review">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <p>
+                  참 맛있게 되썽요.
+                  아빠가 해주는 요리에 다들 감탄했답니다.
+                  담에 또 해주려구요
+                </p>
+                <span>ki******</span> 
+              </div>             
+            </div>
+            <div class="title">구매하기</div>
+            <div class="detail">
+
+            </div>
+            <div class="title">배송안내</div>
+            <div class="detail">
+
+            </div>
+            <div class="title">교환 및 반품안내</div>
+            <div class="detail">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="goods-order-info">
+        <div class="goods-order-choice">
+          <span class="wish"></span>
+          <button class="btn-primary btn-order-choice">구매하기</button>
+        </div>
+        <div class="goods-order-final">
+          <button class="btn-fold"><i class="bi bi-chevron-down"></i></button>
+          <div class="goods-order-final-info">
+            <span class="info-badge arrival">내일도착</span>
+            <div class="goods-title">
+              <h3>바다향 가득! 해산물 씨키트 해물 스파게티 밀키트(2인) 1300g</h3>
+              <div>
+                <span>30%</span><b>11,760원</b><s>16,800원</s>
+                <div class="custom-select">
+                  <select>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="payment-benefit">
+            <b>결제 혜택</b>
+            <p>
+              하나카드 5만원 결제 시 최대 8개월 무이지 할부, PAYCO 생애 첫 결제 시 2,000원 즉시 할인
+              <br><a href="#none">더보기</a>
+            </p>
+          </div>
+          <div class="goods-order-btns">
+            <button class="btn-primary btn-cart">장바구니 담기</button>
+            <button class="btn-primary btn-now-order">바로구매</button>
+          </div>
+        </div>
+      </div>
+      <div class="overlay-fold"></div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title,links)">
+
+    <!-- 공통 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 타이틀 -->
+    <title th:replace="${title}">레이아웃 타이틀</title>
+
+    <!-- 공통 -->
+
+    <!-- jQuery CDN -->
+    <script th:src="@{https://code.jquery.com/jquery-3.5.1.min.js}"></script>
+    <!-- Slick Slider CDN -->
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js}"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css}">
+    <!-- Custom CSS & JS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/custom.js}"></script>
+
+    <!-- 추가 -->
+    <!--    <th:block th:replace="${links}" />-->
+    <!-- 버전에러 있음 확인필요 -->
+
+</head>
+
+

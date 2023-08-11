@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Today’s Meal Kit</title>
+</head>
+<body>
+
+  <script>
+    /* 모바일 디바이스를 감지해 모바일 페이지로 리다이렉트 되는 스크립트 */
+    var UserAgent = navigator.userAgent;
+    if (UserAgent.match(
+        /iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i
+        ) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null) {
+      // alert("Mobile로 방문하셨습니다.");
+      location.href = "/preloading.html";
+    } else {
+      // alert("PC로 방문하셨습니다.");
+      location.href = "/mobile-mockup/without-mockup.html";
+    }    
+  </script>
+
+</body>
+</html>
