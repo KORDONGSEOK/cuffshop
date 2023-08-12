@@ -130,4 +130,17 @@ $(function() {
     $('.overlay-fold').hide()
   })
 
+    /* 상품등록 할인가격 계산 - 제이쿼리 공부좀 하자...--_;;;*/
+    $('#price, #discountRate').on('change', function() {
+      var priceLen = $('#price').val().length;
+      var ratioLen = $('#discountRate').val().length;
+
+      if(priceLen > 0 && ratioLen > 0){
+        var discountprice = Math.round(Number($('#price').val()) * Number($('#discountRate').val()) / 100)
+        $('#discountPrice').val(discountprice)
+      }else if(priceLen == 0 || ratioLen == 0) {
+        $('#discountPrice').val('')
+      }
+    });
+
 })

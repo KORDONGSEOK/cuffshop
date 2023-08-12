@@ -1621,6 +1621,7 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
 }
 .goodsup-field.goods-name input,
 .goodsup-field.price input,
+.goodsup-field.discountprice input,
 .goodsup-field.ratio input,
 .goodsup-field.count input
  {

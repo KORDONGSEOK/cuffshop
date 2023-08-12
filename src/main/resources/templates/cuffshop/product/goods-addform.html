@@ -43,23 +43,6 @@
         </div>
         <div class="goodsup-field catergory-choice">
           <span>카테고리<em>*</em></span>
-<!--          <div>-->
-<!--            <label>-->
-<!--              <input type="radio" name="catergory" checked>한식/중식-->
-<!--            </label>-->
-<!--            <label>-->
-<!--              <input type="radio" name="catergory">중식/일식-->
-<!--            </label>-->
-<!--            <label>-->
-<!--              <input type="radio" name="catergory">동남아-->
-<!--            </label>-->
-<!--            <label>-->
-<!--              <input type="radio" name="catergory">샐러드-->
-<!--            </label>-->
-<!--            <label>-->
-<!--              <input type="radio" name="catergory">프리미엄밀키드-->
-<!--            </label>-->
-<!--          </div>-->
           <div th:each="type : ${categoryTypes}">
             <input type="radio" th:field="*{categoryType}" th:value="${type.name()}">
             <label th:for="${#ids.prev('categoryType')}" th:text="${type.description}"></label>
@@ -67,11 +50,15 @@
         </div>
         <div class="goodsup-field price">
             <span>가격(￦)<em>*</em></span>
-            <input type="text" th:field="*{price}" placeholder="가격입력">
+            <input type="text" th:field="*{price}" id="price" placeholder="가격입력">
         </div>    
         <div class="goodsup-field ratio">
             <span>할인율(%)</span>
-            <input type="text" th:field="*{discountRate}" placeholder="할인율입력">
+            <input type="text" th:field="*{discountRate}" id="discountRate" placeholder="할인율입력">
+        </div>
+        <div class="goodsup-field discountprice">
+          <span>할인가격(￦)</span>
+          <input type="text" th:field="*{discountPrice}" id="discountPrice" disabled>
         </div>
         <div class="goodsup-field count">
           <span>수량(개)<em>*</em></span>
