@@ -29,9 +29,8 @@
                     <div class="food-type-tabs">
                         <div class="food-type-tab tab1">
                             <th:block th:each="product : ${products}">
-                                <div class="tab-item" onclick="location.href=/cuffshop/goods-detail.html"
-                                     th:onclick="|location.href='@{/cuffshop/items/${item.id}}'|">
-                                    <div class="thum">
+                                <div class="tab-item">
+                                    <div class="thum" th:onclick="|location.href='@{/cuffshop/products/{productId}(productId=${product.id})}'|">
                                         <img src="/images/goods-thum-01.jpg">
                                     </div>
                                     <div class="desc">
@@ -43,9 +42,9 @@
                                             <span class="wish"></span>
                                         </div>
                                         <div class="goods-title">
-                                            <h3 th:text="${product.goodsName}">바다향 가득! 해산물 씨키트 해물 스파게티 밀키트(2인)</h3>
+                                            <h3 th:text="${product.productName}">바다향 가득! 해산물 씨키트 해물 스파게티 밀키트(2인)</h3>
                                             <div>
-                                                <span>30%</span> <b>11,760원</b> <s th:text="${product.price}">16,800원</s>
+                                                <span th:text="${product.discountRate}">30%</span> <b th:text="${product.discountPrice}">11,760원</b> <s th:text="${product.price}">16,800원</s>
                                             </div>
                                         </div>
                                     </div>

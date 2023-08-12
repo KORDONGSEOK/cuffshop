@@ -5,7 +5,8 @@ public enum CategoryType {
     CHINESEJAPAN("중식/일식"),
     SOUTHEASTASIAN("동남아"),
     SALAD("샐러드"),
-    PREMIUM("프리미엄밀키트");
+    PREMIUM("프리미엄"),
+    MEALKIT("밀키트");
 
     private final String description;
 

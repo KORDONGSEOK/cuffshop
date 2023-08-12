@@ -586,7 +586,21 @@ body {
 } */
 
 
-.goods-badge {}
+.products.goods-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.products.goods-badge .btn-edit{
+    border: none;
+    font-size: 8px;
+    background-color: var(--crimson);
+    color: #fff;
+    border-radius: 5px;
+    height: 20px;
+    transform: translateY(4px);
+}
 .goods-title {}
 .goods-title h3 {
     font-size: 13px;
@@ -679,6 +693,7 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
     height: 90px;
     position: relative;
 }
+/*
 .tab-item .thum:before {
     counter-increment: rank;
     content: counter(rank);
@@ -693,6 +708,7 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
     border-radius: 5px 0 0 0;
     padding-top: 4px;
 }
+*/
 .tab-item .thum img {
     width: inherit;
     height: inherit;
@@ -862,7 +878,22 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
     padding: 20px 0;
     gap: 10px;
 }
-.goods-delivery-info b {}
+.goods-delivery-info b {
+    display: block;
+    width: 80px;
+}
+.goods-delivery-info textarea
+,.good-detail textarea
+ {
+    width: 100%;
+    border: none;
+    resize: none;
+    background-color: transparent;
+    padding-left: 0px;
+    overflow: hidden;
+    height: auto;
+}
+/*
 .goods-delivery-info div {}
 .goods-delivery-info div span {
     display: block;
@@ -871,6 +902,7 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
     font-style: normal;
     color: var(--sivler-gray);
 }
+*/
 
 /* Goods Detail */
 .good-detail {
@@ -1600,11 +1632,15 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
 .goodsup-field.goods-name input::placeholder {
     color: var(--sivler-gray);
 }
+.catergory-choice {
+    border-bottom: 1px solid var(--gainsboro);
+}
 .catergory-choice span {
     margin-bottom: 10px;
 }
 .catergory-choice div {
-    border-bottom: 1px solid var(--gainsboro);
+    /* border-bottom: 1px solid var(--gainsboro); */
+    display: inline;
     text-align: left;
 }
 .catergory-choice div label {

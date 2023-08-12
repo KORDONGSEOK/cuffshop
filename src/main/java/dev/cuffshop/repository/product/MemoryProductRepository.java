@@ -34,13 +34,13 @@ public class MemoryProductRepository implements ProductRepository {
     @Override
     public void update(Long goodsId, Product updateParam) {
         Product findGoods = findById(goodsId);
-        findGoods.setGoodsName(updateParam.getGoodsName());
-        findGoods.setCategory(updateParam.getCategory());
+        findGoods.setProductName(updateParam.getProductName());
+        findGoods.setCategoryType(updateParam.getCategoryType());
         findGoods.setPrice(updateParam.getPrice());
         findGoods.setDiscountRate(updateParam.getDiscountRate());
         findGoods.setQuantity(updateParam.getQuantity());
         findGoods.setDeliveryInfo(updateParam.getDeliveryInfo());
-        findGoods.setGoodsInfo(updateParam.getGoodsInfo());
+        findGoods.setProductInfo(updateParam.getProductInfo());
     }
 
     public void clearStore() {

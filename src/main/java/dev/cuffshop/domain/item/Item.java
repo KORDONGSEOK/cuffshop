@@ -10,6 +10,7 @@ public class Item {
     private Long id;
     private String itemName;    //상품명
     private Integer price;      // 가격
+
     private Integer quantity;    //재고수량
 
     private Boolean open;          //판매여부

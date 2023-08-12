@@ -6,23 +6,24 @@ import lombok.Setter;
 @Getter @Setter
 public class Product {
     private Long id;
-    private String goodsName;
-    private CategoryType category;
+    private String productName;
+    private CategoryType categoryType;
     private Integer price;
     private Integer discountRate;
     private Integer quantity;
     private String deliveryInfo;
-    private String goodsInfo;
+    private String productInfo;
+    private Integer discountPrice;
 
     public Product() {
     }
 
-    public Product(String goodsName, Integer price, Integer discountRate, Integer quantity, String deliveryInfo, String goodsInfo) {
-        this.goodsName = goodsName;
+    public Product(String productName, Integer price, Integer discountRate, Integer quantity, String deliveryInfo, String productInfo) {
+        this.productName = productName;
         this.price = price;
         this.discountRate = discountRate;
         this.quantity = quantity;
         this.deliveryInfo = deliveryInfo;
-        this.goodsInfo = goodsInfo;
+        this.productInfo = productInfo;
     }
 }
