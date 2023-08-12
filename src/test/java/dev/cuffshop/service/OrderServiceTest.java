@@ -4,14 +4,14 @@ import dev.cuffshop.config.AppConfig;
 import dev.cuffshop.domain.member.Grade;
 import dev.cuffshop.domain.member.Member;
 import dev.cuffshop.domain.order.Order;
-import org.assertj.core.api.Assertions;
+import dev.cuffshop.service.member.MemberService;
+import dev.cuffshop.service.order.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderServiceTest {
 

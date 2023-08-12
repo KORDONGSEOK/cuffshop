@@ -1,9 +1,9 @@
-package dev.cuffshop.service;
+package dev.cuffshop.service.order;
 
 import dev.cuffshop.domain.discount.DiscountPolicy;
 import dev.cuffshop.domain.member.Member;
 import dev.cuffshop.domain.order.Order;
-import dev.cuffshop.repository.MemberRepository;
+import dev.cuffshop.repository.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

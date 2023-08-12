@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cateogroy - Today’s Meal Kit</title>
-  <!-- jQuery CDN -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Slick Slider CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"> 
-   <!-- Custom CSS & JS -->
-   <link rel="stylesheet" href="/css/style.css">
-   <script src="/js/custom.js"></script>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: common_header(~{::title},~{::link})">
+    <title>goodsup - Cuff Shop</title>
 </head>
 <body>
   
   <div class="container category">
     <div class="category-inner">
       <!-- Main Header Include -->
-      <div class="main-header-include"></div>
+        <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
       <!-- Main Header Include -->
       <div class="categroy-content">
         <div class="category-accordion">
@@ -66,7 +55,7 @@
         </div>
       </div>
       <!-- GNB include-->
-      <div class="gnb-include"></div>
+        <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
       <!-- GNB include-->       
     </div>
   </div>

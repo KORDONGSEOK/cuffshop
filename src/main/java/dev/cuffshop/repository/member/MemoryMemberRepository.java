@@ -1,4 +1,4 @@
-package dev.cuffshop.repository;
+package dev.cuffshop.repository.member;
 
 import dev.cuffshop.domain.member.Member;
 import org.springframework.stereotype.Repository;

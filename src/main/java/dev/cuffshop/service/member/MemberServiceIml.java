@@ -1,7 +1,7 @@
-package dev.cuffshop.service;
+package dev.cuffshop.service.member;
 
 import dev.cuffshop.domain.member.Member;
-import dev.cuffshop.repository.MemberRepository;
+import dev.cuffshop.repository.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

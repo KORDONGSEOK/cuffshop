@@ -1,4 +1,4 @@
-package dev.cuffshop.service;
+package dev.cuffshop.service.member;
 
 import dev.cuffshop.domain.member.Member;
 

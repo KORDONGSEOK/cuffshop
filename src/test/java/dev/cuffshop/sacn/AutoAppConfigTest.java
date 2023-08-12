@@ -1,7 +1,7 @@
 package dev.cuffshop.sacn;
 
 import dev.cuffshop.config.AutoAppConfig;
-import dev.cuffshop.service.MemberService;
+import dev.cuffshop.service.member.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

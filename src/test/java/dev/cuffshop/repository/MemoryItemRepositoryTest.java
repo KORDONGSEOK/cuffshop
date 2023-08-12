@@ -1,6 +1,7 @@
 package dev.cuffshop.repository;
 
 import dev.cuffshop.domain.item.Item;
+import dev.cuffshop.repository.item.MemoryItemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 

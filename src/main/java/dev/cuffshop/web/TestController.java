@@ -1,7 +1,7 @@
 package dev.cuffshop.web;
 
 import dev.cuffshop.domain.item.Item;
-import dev.cuffshop.repository.ItemRepository;
+import dev.cuffshop.repository.item.ItemRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,4 +23,5 @@ public class TestController {
         model.addAttribute("items", items);
         return "cuffshop/item/goods-list";
     }
+
 }

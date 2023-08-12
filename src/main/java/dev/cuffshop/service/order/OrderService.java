@@ -1,4 +1,4 @@
-package dev.cuffshop.service;
+package dev.cuffshop.service.order;
 
 import dev.cuffshop.domain.order.Order;
 

@@ -3,6 +3,7 @@ package dev.cuffshop.service;
 import dev.cuffshop.config.AppConfig;
 import dev.cuffshop.domain.member.Grade;
 import dev.cuffshop.domain.member.Member;
+import dev.cuffshop.service.member.MemberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;

@@ -1,4 +1,4 @@
-package dev.cuffshop.repository;
+package dev.cuffshop.repository.item;
 
 import dev.cuffshop.domain.item.Item;
 import org.springframework.stereotype.Repository;
