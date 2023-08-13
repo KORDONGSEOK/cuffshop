@@ -15,10 +15,10 @@ public class MemoryProductRepository implements ProductRepository {
     private static long sequence = 0L;
 
     @Override
-    public Product save(Product goods) {
-        goods.setId(++sequence);
-        store.put(goods.getId(), goods);
-        return goods;
+    public Product save(Product product) {
+        product.setId(++sequence);
+        store.put(product.getId(), product);
+        return product;
     }
 
     @Override
@@ -32,15 +32,22 @@ public class MemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public void update(Long goodsId, Product updateParam) {
-        Product findGoods = findById(goodsId);
-        findGoods.setProductName(updateParam.getProductName());
-        findGoods.setCategoryType(updateParam.getCategoryType());
-        findGoods.setPrice(updateParam.getPrice());
-        findGoods.setDiscountRate(updateParam.getDiscountRate());
-        findGoods.setQuantity(updateParam.getQuantity());
-        findGoods.setDeliveryInfo(updateParam.getDeliveryInfo());
-        findGoods.setProductInfo(updateParam.getProductInfo());
+    public void update(Long productId, Product updateParam) {
+        Product findProduct = findById(productId);
+        findProduct.setProductName(updateParam.getProductName());
+        findProduct.setCategoryType(updateParam.getCategoryType());
+        findProduct.setPrice(updateParam.getPrice());
+        findProduct.setDiscountRate(updateParam.getDiscountRate());
+        findProduct.setQuantity(updateParam.getQuantity());
+        findProduct.setDeliveryInfo(updateParam.getDeliveryInfo());
+        findProduct.setProductInfo(updateParam.getProductInfo());
+        findProduct.setDiscountPrice(updateParam.getDiscountPrice());
+    }
+
+    @Override
+    public void delete(Long productId) {
+        Product findProduct = findById(productId);
+        store.remove(findProduct);
     }
 
     public void clearStore() {

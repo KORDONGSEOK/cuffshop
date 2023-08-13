@@ -9,7 +9,7 @@
       <!-- Main Header Include -->
       <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
       <!-- Main Header Include -->
-      <form class="goodsup-content" th:action th:object="${product}" method="post">
+      <form class="goodsup-content" th:action th:object="${product}" method="post" onkeydown="return keydownFalse()">
         <div class="img-choice">
           <label class="img-upload" for="ex_file">
             <i class="bi bi-camera"></i>
@@ -39,7 +39,10 @@
         </div>     
         <div class="goodsup-field goods-name">
           <span>상품명<em>*</em></span>
-          <input type="text" th:field="*{productName}" placeholder="상품명 입력">
+          <input type="text" th:field="*{productName}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="상품명 입력">
+          <div class="field-error" th:errors="*{productName}"></div>
         </div>
         <div class="goodsup-field catergory-choice">
           <span>카테고리<em>*</em></span>
@@ -79,5 +82,12 @@
       <!-- GNB include-->
     </div>
   </div>
+  <script>
+  function keydownFalse(){
+    if(event.keyCode == 13){
+      return false;
+    }
+  }
+  </script>
 </body>
 </html>

@@ -3,15 +3,23 @@ package dev.cuffshop.domain.product;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter @Setter
 public class Product {
     private Long id;
+
     private String productName;
+
     private CategoryType categoryType;
+
     private Integer price;
     private Integer discountRate;
+
     private Integer quantity;
+
     private String deliveryInfo;
+
     private String productInfo;
     private Integer discountPrice;
 

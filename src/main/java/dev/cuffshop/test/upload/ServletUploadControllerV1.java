@@ -1,4 +1,4 @@
-package dev.cuffshop.web.upload;
+package dev.cuffshop.test.upload;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

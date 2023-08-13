@@ -5,11 +5,13 @@ import dev.cuffshop.domain.product.Product;
 import java.util.List;
 
 public interface ProductRepository {
-    Product save(Product goods);
+    Product save(Product product);
 
     Product findById(Long id);
 
     List<Product> findAll();
 
-    void update(Long goodsId, Product updateParam);
+    void update(Long productId, Product updateParam);
+
+    void delete(Long productId);
 }

@@ -1,4 +1,4 @@
-package dev.cuffshop.web;
+package dev.cuffshop.test;
 
 import dev.cuffshop.domain.item.Item;
 import dev.cuffshop.repository.item.ItemRepository;

@@ -1700,6 +1700,12 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
     overflow-x: hidden;
 }
 
+/* Validation Check */
+.field-error {
+    border-color: var(--crimson);
+    color: var(--crimson);
+}
+
 
 /* For Big Size Mobile & Tablet Device */
 @media(min-width: 400px) {

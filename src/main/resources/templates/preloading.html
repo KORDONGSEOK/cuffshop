@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome to Today’s Meal Kit</title>
-   <!-- jQuery CDN -->
-   <script scr="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-   <!-- Custom CSS & JS -->
-   <link rel="icon" href="/images/cutlery.png">
-   <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Cuff Shop</title>
+    <script th:src="@{https://code.jquery.com/jquery-3.5.1.min.js}"></script>
+    <!-- Custom CSS & JS -->
+    <link rel="icon" href="/images/cutlery.png" th:href="@{/images/cutlery.png}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
     <div class="container preloading">
-      <div class="preloading-inner" onclick="location.href='/html/front.html'">
+      <div class="preloading-inner" onclick="location.href='/html/front.html'" th:onclick="|location.href='@{/cuffshop/products}'|">
         <div class="heading-preloading">
           <h2 class="logo">Today’s Meal Kit</h2>
           <p class="slogan">
@@ -24,9 +24,9 @@
       </div>
     </div>
 
-    <script>
+    <script th:inline="javascript">
       /* 1초 후 front.html로 이동 */
-      setTimeout("location.href='/html/front.html'",1000)
+      setTimeout("location.href='/cuffshop/products'",1000)
     </script>
 
 </body>

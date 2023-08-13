@@ -1,4 +1,4 @@
-package dev.cuffshop.web;
+package dev.cuffshop.web.item;
 
 import dev.cuffshop.domain.delivery.DeliveryCode;
 import dev.cuffshop.domain.item.Item;
@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -70,27 +73,38 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
-
-        //검증 오류 결과를 보관
-        Map<String, String> errors = new HashMap<>();
+    public String save(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
         //검증로직
-        if (StringUtils.hasText(item.getItemName())) {
-            errors.put("itemName", "상품 이름은 필수입니다.");
+        if (!StringUtils.hasText(item.getItemName())) {
+            bindingResult.addError(new FieldError("item", "itemName", "상품 이름은 필수입니다."));
         }
-        if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 10000000) {
-            errors.put("price", "가격은 1,000 ~ 1,000,000 까지 허용합니다.");
+        if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() >
+                1000000) {
+            bindingResult.addError(new FieldError("item", "price", "가격은 1,000 ~ 1,000,000 까지 허용합니다."));
+        } if (item.getQuantity() == null || item.getQuantity() > 10000) {
+            bindingResult.addError(new FieldError("item", "quantity", "수량은 최대 9,999 까지 허용합니다."));
         }
-        if (item.getQuantity() == null || item.getQuantity() >= 9999) {
-            errors.put("quantity", "수량은 최대 9,999 까지 허용합니다.");
+        //특정 필드 예외가 아닌 전체 예외
+        if (item.getPrice() != null && item.getQuantity() != null) {
+            int resultPrice = item.getPrice() * item.getQuantity();
+            if (resultPrice < 10000) {
+                bindingResult.addError(new ObjectError("item", "가격 * 수량의 합은10,000원 이상이어야 합니다. 현재 값 = " + resultPrice));
+            }
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "basic/addForm";
         }
 
 
-        log.info("item.open={}", item.getOpen());
-        log.info("item.regions={}", item.getRegions());
-        log.info("item.itemType={}", item.getItemType());
 
+//        log.info("item.open={}", item.getOpen());
+//        log.info("item.regions={}", item.getRegions());
+//        log.info("item.itemType={}", item.getItemType());
+
+        //성공 로직
         Item saveItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", saveItem.getId());
         redirectAttributes.addAttribute("status", true);

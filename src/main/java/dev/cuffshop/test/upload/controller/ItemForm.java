@@ -1,4 +1,4 @@
-package dev.cuffshop.web.upload.controller;
+package dev.cuffshop.test.upload.controller;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;

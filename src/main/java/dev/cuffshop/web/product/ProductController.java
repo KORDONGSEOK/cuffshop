@@ -7,6 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,9 +44,6 @@ public class ProductController {
     @GetMapping("/{productId}")
     public String product(@PathVariable long productId, Model model) {
 
-        log.info("=======product 메서드 확인=======");
-        log.info("productId = {}", productId);
-
         Product product = productRepository.findById(productId);
         model.addAttribute("product", product);
         return "cuffshop/product/goods-detail";
@@ -55,13 +56,58 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+
+        if (!StringUtils.hasText(product.getProductName())) {
+            bindingResult.addError(new FieldError("product", "productName", "상품이름은 필수입니다."));
+        }
+
+
+
+        log.info("product.productName={}" , product.getProductName());
+        log.info("product.categoryType={}" , product.getCategoryType());
+        log.info("product.price={}" ,         product.getPrice());
+        log.info("product.discountRate={}" , product.getDiscountRate());
+        log.info("product.quantity={}" , product.getQuantity());
+        log.info("product.deliveryInfo={}" , product.getDeliveryInfo());
+        log.info("product.productInfo={}" , product.getProductInfo());
+        log.info("product.discountPrice={}" , product.getDiscountPrice());
+
+        Integer price = product.getPrice();
+        Integer discountRate = product.getDiscountRate();
+        Integer discountPrice = product.getDiscountPrice();
+
+        if (discountPrice == null) {
+            if (price != null && discountRate != null) {
+                discountPrice = price * discountRate / 100;
+                product.setDiscountPrice(discountPrice);
+            }
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "cuffshop/product/goods-addform";
+        }
+
         Product saveProduct = productRepository.save(product);
         redirectAttributes.addAttribute("productId", saveProduct.getId());
         redirectAttributes.addAttribute("status", true);
         return "redirect:/cuffshop/products/{productId}";
     }
 
+    @GetMapping("/{productId}/edit")
+    public String editForm(@PathVariable Long productId, Model model) {
+        Product product = productRepository.findById(productId);
+        model.addAttribute("product", product);
+        return "cuffshop/product/goods-editform";
+    }
+
+    @PostMapping("/{productId}/edit")
+    public String edit(@PathVariable Long productId, @ModelAttribute Product product) {
+        productRepository.update(productId, product);
+        return "redirect:/cuffshop/products/{productId}";
+    }
 
     /**
      * 테스트용 데이터 추가

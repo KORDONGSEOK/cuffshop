@@ -1,4 +1,4 @@
-package dev.cuffshop.web.upload.domain;
+package dev.cuffshop.test.upload.domain;
 
 import lombok.Data;
 

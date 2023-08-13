@@ -1,6 +1,6 @@
-package dev.cuffshop.web.upload.file;
+package dev.cuffshop.test.upload.file;
 
-import dev.cuffshop.web.upload.domain.UploadFile;
+import dev.cuffshop.test.upload.domain.UploadFile;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,9 +1,9 @@
-package dev.cuffshop.web.upload.controller;
+package dev.cuffshop.test.upload.controller;
 
-import dev.cuffshop.web.upload.domain.Item;
-import dev.cuffshop.web.upload.domain.ItemRepository;
-import dev.cuffshop.web.upload.domain.UploadFile;
-import dev.cuffshop.web.upload.file.FileStore;
+import dev.cuffshop.test.upload.domain.Item;
+import dev.cuffshop.test.upload.domain.UploadFile;
+import dev.cuffshop.test.upload.file.FileStore;
+import dev.cuffshop.test.upload.domain.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
 
@@ -37,7 +36,7 @@ public class ItemUploadController {
 
     @GetMapping("/items/new")
     public String newItem(@ModelAttribute ItemForm form) {
-        return "upload/item-form";
+        return "test/upload/item-form";
     }
 
 
@@ -62,7 +61,7 @@ public class ItemUploadController {
     public String items(@PathVariable Long id, Model model) {
         Item item = itemRepository.findById(id);
         model.addAttribute("item", item);
-        return "upload/item-view";
+        return "test/upload/item-view";
     }
 
     @ResponseBody

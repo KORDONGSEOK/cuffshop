@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome to Today's Meal Kit</title>
+  <title>Welcome to CuffShop</title>
   <link rel="icon" href="/images/cutlery.png">
   <style>
     body {
@@ -27,7 +27,7 @@
 <body>
   
   <div class="without-mockup">
-    <iframe src="/preloading.html" frameborder="0"></iframe>
+    <iframe src="/preloading.html" th:src="@{/cuffshop/preloading}" frameborder="0"></iframe>
   </div>
 
 </body>
