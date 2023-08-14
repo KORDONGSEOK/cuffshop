@@ -3,11 +3,11 @@
 
 <body>
   <div class="gnb" th:fragment="copy">
-    <a href="/cuffshop/front.html"><i class="bi bi-house"></i><span>홈</span></a>
-    <a href="/cuffshop/search.html"><i class="bi bi-search"></i><span>검색</span></a>
+    <a href="/cuffshop/front.html" th:href="@{/cuffshop/products}"><i class="bi bi-house"></i><span>홈</span></a>
+    <a href="/cuffshop/search.html" th:href="@{/cuffshop/search}"><i class="bi bi-search"></i><span>검색</span></a>
     <a href="/cuffshop/item/goodsup.html" th:href="@{/cuffshop/products/add}"><i class="bi bi-plus-circle"></i></i><span>등록</span></a>
-    <a href="/cuffshop/member/mypage.html"><i class="bi bi-person"></i><span>나의정보</span></a>
-    <a class="cart-alarm" href="/cuffshop/order/cart.html">
+    <a href="/cuffshop/member/mypage.html" th:href="@{/cuffshop/mypage}"><i class="bi bi-person"></i><span>나의정보</span></a>
+    <a class="cart-alarm" href="/cuffshop/order/cart.html" th:href="@{/cuffshop/cart}">
       <b>
         <i class="bi bi-cart"></i><em data-count="9"></em>
       </b>

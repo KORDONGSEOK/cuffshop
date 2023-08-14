@@ -34,4 +34,25 @@ public class Product {
         this.deliveryInfo = deliveryInfo;
         this.productInfo = productInfo;
     }
+
+    public Product(String productName, Integer price, Integer discountRate, Integer quantity, String deliveryInfo, String productInfo, Integer discountPrice) {
+        this.productName = productName;
+        this.price = price;
+        this.discountRate = discountRate;
+        this.quantity = quantity;
+        this.deliveryInfo = deliveryInfo;
+        this.productInfo = productInfo;
+        this.discountPrice = discountPrice;
+    }
+
+    public Product(String productName, CategoryType categoryType, Integer price, Integer discountRate, Integer quantity, String deliveryInfo, String productInfo, Integer discountPrice) {
+        this.productName = productName;
+        this.categoryType = categoryType;
+        this.price = price;
+        this.discountRate = discountRate;
+        this.quantity = quantity;
+        this.deliveryInfo = deliveryInfo;
+        this.productInfo = productInfo;
+        this.discountPrice = discountPrice;
+    }
 }

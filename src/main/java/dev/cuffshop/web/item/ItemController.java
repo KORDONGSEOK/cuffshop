@@ -4,6 +4,10 @@ import dev.cuffshop.domain.delivery.DeliveryCode;
 import dev.cuffshop.domain.item.Item;
 import dev.cuffshop.domain.item.ItemType;
 import dev.cuffshop.repository.item.ItemRepository;
+import dev.cuffshop.test.validation.ItemValidator;
+import dev.cuffshop.test.validation.form.ItemSaveForm;
+import dev.cuffshop.test.validation.form.ItemUpdateForm;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,8 +27,15 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequestMapping("/basic/items")
+@RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
+//    private final ItemValidator itemValidator;
+
+//    @InitBinder
+//    public void init(WebDataBinder dataBinder) {
+//        dataBinder.addValidators(itemValidator);
+//    }
 
     @ModelAttribute("regions") //모델에 담기는것이 항상 보장된다.
     public Map<String, String> regions() {
@@ -47,11 +60,6 @@ public class ItemController {
         return deliveryCodes;
     }
 
-    @Autowired
-    public ItemController(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
-    }
-
     @GetMapping
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
@@ -73,38 +81,30 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+    public String save(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
-        //검증로직
-        if (!StringUtils.hasText(item.getItemName())) {
-            bindingResult.addError(new FieldError("item", "itemName", "상품 이름은 필수입니다."));
-        }
-        if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() >
-                1000000) {
-            bindingResult.addError(new FieldError("item", "price", "가격은 1,000 ~ 1,000,000 까지 허용합니다."));
-        } if (item.getQuantity() == null || item.getQuantity() > 10000) {
-            bindingResult.addError(new FieldError("item", "quantity", "수량은 최대 9,999 까지 허용합니다."));
-        }
         //특정 필드 예외가 아닌 전체 예외
-        if (item.getPrice() != null && item.getQuantity() != null) {
-            int resultPrice = item.getPrice() * item.getQuantity();
+        if (form.getPrice() != null && form.getQuantity() != null) {
+            int resultPrice = form.getPrice() * form.getQuantity();
             if (resultPrice < 10000) {
-                bindingResult.addError(new ObjectError("item", "가격 * 수량의 합은10,000원 이상이어야 합니다. 현재 값 = " + resultPrice));
+                bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
             }
         }
+
+//        itemValidator.validate(item, bindingResult);
 
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "basic/addForm";
         }
 
-
-
-//        log.info("item.open={}", item.getOpen());
-//        log.info("item.regions={}", item.getRegions());
-//        log.info("item.itemType={}", item.getItemType());
-
         //성공 로직
+
+        Item item = new Item();
+        item.setItemName(form.getItemName());
+        item.setPrice(form.getPrice());
+        item.setQuantity(form.getQuantity());
+
         Item saveItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", saveItem.getId());
         redirectAttributes.addAttribute("status", true);
@@ -119,8 +119,27 @@ public class ItemController {
     }
 
     @PostMapping("/{itemId}/edit")
-    public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
-        itemRepository.update(itemId, item);
+    public String edit(@PathVariable Long itemId, @Validated @ModelAttribute("item") ItemUpdateForm form, BindingResult bindingResult) {
+
+        //특정 필드 예외가 아닌 전체 예외
+        if (form.getPrice() != null && form.getQuantity() != null) {
+            int resultPrice = form.getPrice() * form.getQuantity();
+            if (resultPrice < 10000) {
+                bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
+            }
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.info("erros={}", bindingResult);
+            return "basic/editForm";
+        }
+
+        Item itemParam = new Item();
+        itemParam.setItemName(form.getItemName());
+        itemParam.setPrice(form.getPrice());
+        itemParam.setQuantity(form.getQuantity());
+
+        itemRepository.update(itemId, itemParam);
         return "redirect:/basic/items/{itemId}";
     }
 

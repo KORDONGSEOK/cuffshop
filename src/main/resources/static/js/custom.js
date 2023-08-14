@@ -131,16 +131,19 @@ $(function() {
   })
 
     /* 상품등록 할인가격 계산 - 제이쿼리 공부좀 하자...--_;;;*/
+/*
     $('#price, #discountRate').on('change', function() {
       var priceLen = $('#price').val().length;
       var ratioLen = $('#discountRate').val().length;
+      var price = Number($('#price').val());
+      var discountRate = Number($('#discountRate').val());
 
       if(priceLen > 0 && ratioLen > 0){
-        var discountprice = Math.round(Number($('#price').val()) * Number($('#discountRate').val()) / 100)
+        var discountprice = Math.round( price * discountRate / 100);
         $('#discountPrice').val(discountprice)
       }else if(priceLen == 0 || ratioLen == 0) {
         $('#discountPrice').val('')
       }
     });
-
+*/
 })

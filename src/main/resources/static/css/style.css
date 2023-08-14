@@ -255,9 +255,9 @@ body {
 
 
 /* GNB Navigation Check */
-.categroy .gnb a:nth-child(1),
+.goods-list .gnb a:nth-child(1),
 .search .gnb a:nth-child(2),
-.front .gnb a:nth-child(3),
+.goodsup .gnb a:nth-child(3),
 .mypage .gnb a:nth-child(4),
 .cart .gnb a:nth-child(5) {
     color: var(--crimson);
@@ -1702,8 +1702,10 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
 
 /* Validation Check */
 .field-error {
-    border-color: var(--crimson);
+    border-bottom-color: var(--crimson);
     color: var(--crimson);
+}
+.form-control.field-error {
 }
 
 

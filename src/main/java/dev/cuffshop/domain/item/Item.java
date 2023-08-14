@@ -2,14 +2,22 @@ package dev.cuffshop.domain.item;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.ScriptAssert;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter @Setter
 public class Item {
     private Long id;
+
     private String itemName;    //상품명
+
     private Integer price;      // 가격
+
 
     private Integer quantity;    //재고수량
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/head :: common_header(~{::title},~{::link})">
-  <title>goodsup - Cuff Shop</title>
+  <title>product - Cuff Shop</title>
 </head>
 <body>
   <div class="container goodsup">
@@ -51,29 +51,46 @@
             <label th:for="${#ids.prev('categoryType')}" th:text="${type.description}"></label>
           </div>
         </div>
+        <div class="field-error" th:errors="*{categoryType}"></div>
         <div class="goodsup-field price">
             <span>가격(￦)<em>*</em></span>
-            <input type="text" th:field="*{price}" id="price" placeholder="가격입력">
+            <input type="text" th:field="*{price}"
+                   th:errorclass="field-error" class="form-control"
+                   id="price" placeholder="가격입력">
+            <div class="field-error" th:errors="*{price}"></div>
         </div>    
         <div class="goodsup-field ratio">
             <span>할인율(%)</span>
-            <input type="text" th:field="*{discountRate}" id="discountRate" placeholder="할인율입력">
+            <input type="text" th:field="*{discountRate}"
+                   th:errorclass="field-error" class="form-control"
+                   id="discountRate" placeholder="할인율입력">
+            <div class="field-error" th:errors="*{discountRate}"></div>
         </div>
         <div class="goodsup-field discountprice">
           <span>할인가격(￦)</span>
           <input type="text" th:field="*{discountPrice}" id="discountPrice" disabled>
+          <div class="field-error" th:errors="*{discountPrice}"></div>
         </div>
         <div class="goodsup-field count">
           <span>수량(개)<em>*</em></span>
-          <input type="text" th:field="*{quantity}" placeholder="수량입력">
+          <input type="text" th:field="*{quantity}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="수량입력">
+          <div class="field-error" th:errors="*{quantity}"></div>
         </div>
         <div class="goodsup-field delivery-info">
           <span>배송정보<em>*</em></span>
-          <textarea cols="30" rows="3" th:field="*{deliveryInfo}" placeholder="배송정보 입력"></textarea>
+          <textarea cols="30" rows="3" th:field="*{deliveryInfo}"
+                    th:errorclass="field-error" class="form-control"
+                    placeholder="배송정보 입력"></textarea>
+          <div class="field-error" th:errors="*{deliveryInfo}"></div>
         </div>
         <div class="goodsup-field board-info">
           <span>상품정보<em>*</em></span>
-          <textarea cols="30" rows="6" th:field="*{productInfo}" placeholder="게시글 내용을 작성해주세요"></textarea>
+          <textarea cols="30" rows="6" th:field="*{productInfo}"
+                    th:errorclass="field-error" class="form-control"
+                    placeholder="게시글 내용을 작성해주세요"></textarea>
+          <div class="field-error" th:errors="*{productInfo}"></div>
         </div>
         <button class="btn-primary btn-goodsup" type="submit">등록하기</button>
       </form>

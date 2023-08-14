@@ -56,39 +56,33 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
-
-        if (!StringUtils.hasText(product.getProductName())) {
-            bindingResult.addError(new FieldError("product", "productName", "상품이름은 필수입니다."));
-        }
-
-
-
-        log.info("product.productName={}" , product.getProductName());
-        log.info("product.categoryType={}" , product.getCategoryType());
-        log.info("product.price={}" ,         product.getPrice());
-        log.info("product.discountRate={}" , product.getDiscountRate());
-        log.info("product.quantity={}" , product.getQuantity());
-        log.info("product.deliveryInfo={}" , product.getDeliveryInfo());
-        log.info("product.productInfo={}" , product.getProductInfo());
-        log.info("product.discountPrice={}" , product.getDiscountPrice());
-
-        Integer price = product.getPrice();
-        Integer discountRate = product.getDiscountRate();
-        Integer discountPrice = product.getDiscountPrice();
-
-        if (discountPrice == null) {
-            if (price != null && discountRate != null) {
-                discountPrice = price * discountRate / 100;
-                product.setDiscountPrice(discountPrice);
-            }
-        }
+    public String save(@Validated @ModelAttribute("product") ProductSaveForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "cuffshop/product/goods-addform";
         }
+
+        log.info("form.getDiscountPrice={}", form.getDiscountPrice());
+
+        int discountPrice = 0;
+        //할인가격 계산이 안되고 넘어오는것 처리
+        if (form.getDiscountPrice() == null) {
+            if (form.getPrice() != null && form.getDiscountRate() != null) {
+                discountPrice = form.getPrice() * form.getDiscountRate() / 100;
+            }
+        }else {
+            discountPrice = form.getDiscountPrice();
+        }
+
+        Product product = new Product(form.getProductName(),
+                                        form.getCategoryType(),
+                                        form.getPrice(),
+                                        form.getDiscountRate(),
+                                        form.getQuantity(),
+                                        form.getDeliveryInfo(),
+                                        form.getProductInfo(),
+                                        discountPrice);
 
         Product saveProduct = productRepository.save(product);
         redirectAttributes.addAttribute("productId", saveProduct.getId());
@@ -104,8 +98,35 @@ public class ProductController {
     }
 
     @PostMapping("/{productId}/edit")
-    public String edit(@PathVariable Long productId, @ModelAttribute Product product) {
-        productRepository.update(productId, product);
+    public String edit(@PathVariable Long productId, @Validated @ModelAttribute("product") ProductUpdateForm form, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("errors={}", bindingResult);
+            return "cuffshop/product/goods-editform";
+        }
+
+        log.info("form.getDiscountPrice={}", form.getDiscountPrice());
+
+        int discountPrice = 0;
+        //할인가격 계산이 안되고 넘어오는것 처리
+        if (form.getDiscountPrice() == null) {
+            if (form.getPrice() != null && form.getDiscountRate() != null) {
+                discountPrice = form.getPrice() * form.getDiscountRate() / 100;
+            }
+        }else {
+            discountPrice = form.getDiscountPrice();
+        }
+
+        Product productParam = new Product(form.getProductName(),
+                                    form.getCategoryType(),
+                                    form.getPrice(),
+                                    form.getDiscountRate(),
+                                    form.getQuantity(),
+                                    form.getDeliveryInfo(),
+                                    form.getProductInfo(),
+                                    discountPrice);
+
+        productRepository.update(productId, productParam);
         return "redirect:/cuffshop/products/{productId}";
     }
 
@@ -125,7 +146,9 @@ public class ProductController {
                         "제주, 도서, 산간 지역 15,000원 추가",
                         "입 안에 가득 퍼지는 풍부한 바다 향과 스파케티의 다채로운 2가지 맛의 콤비네이션\n" +
                                 "우스터소스, 간장, 꿀, 레드 와인 식초로 맛을 낸 마리네이드 소사는 풍미를 더해줄 뿐만 아니라 오징어의식감을 더욱 부드럽게 만들어줍니다.\n" +
-                                "오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티")
+                                "오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티",
+                        11760
+                        )
 
         );
         productRepository.save(
@@ -139,7 +162,8 @@ public class ProductController {
                         "제주, 도서, 산간 지역 15,000원 추가",
                         "입 안에 가득 퍼지는 풍부한 바다 향과 스파케티의 다채로운 2가지 맛의 콤비네이션\n" +
                                 "우스터소스, 간장, 꿀, 레드 와인 식초로 맛을 낸 마리네이드 소사는 풍미를 더해줄 뿐만 아니라 오징어의식감을 더욱 부드럽게 만들어줍니다.\n" +
-                                "오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티")
+                                "오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티",
+                        18800)
 
         );
         productRepository.save(
@@ -153,7 +177,8 @@ public class ProductController {
                         "제주, 도서, 산간 지역 15,000원 추가",
                         "입 안에 가득 퍼지는 풍부한 바다 향과 스파케티의 다채로운 2가지 맛의 콤비네이션\n" +
                                 "우스터소스, 간장, 꿀, 레드 와인 식초로 맛을 낸 마리네이드 소사는 풍미를 더해줄 뿐만 아니라 오징어의식감을 더욱 부드럽게 만들어줍니다.\n" +
-                                "오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티")
+                                "오늘 메뉴는 아이들이 좋아하는 오징어 토마토 스파게티를 만들어 주세요. 입에서 살살 녹는 Today’s Meal Kit 토마토 오징어 스파케티",
+                        11250)
 
         );
     }
