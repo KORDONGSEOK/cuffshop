@@ -35,33 +35,31 @@
         <div class="signup-field birth">
           <span>생년월일<em>*</em></span>
           <div>
-            <input type="text" placeholder="년도(4자리)">
-            <select name="" >
+            <input type="text" th:field="*{year}"
+                   th:errorclass="field-error" class="form-control"
+                   placeholder="년도(4자리)">
+            <select th:field="*{monthCode}" th:errorclass="field-error" class="form-control">
               <option value="">월</option>
-              <option value="">1월</option>
-              <option value="">2월</option>
-              <option value="">3월</option>
-              <option value="">4월</option>
-              <option value="">5월</option>
-              <option value="">6월</option>
-              <option value="">7월</option>
-              <option value="">8월</option>
-              <option value="">9월</option>
-              <option value="">10월</option>
-              <option value="">11월</option>
-              <option value="">12월</option>
+              <option th:each="monthCode : ${monthCodes}" th:value="${monthCode.code}"
+                      th:text="${monthCode.displayName}"></option>
             </select>
-            <select name="" >
+            <select th:field="*{dayCode}" th:errorclass="field-error" class="form-control">
               <option value="">일</option>
+              <option th:each="dayCode : ${dayCodes}" th:value="${dayCode.code}"
+                      th:text="${dayCode.displayName}"></option>
             </select>
           </div>
+          <div class="field-error" th:errors="*{year}"></div>
         </div>
         <div class="signup-field phone">
           <span>휴대전화<em>*</em></span>
           <div>
-            <input type="text" placeholder="휴대 전화번호 입력">
+            <input type="text" th:field="*{phoneNumber}"
+                   th:errorclass="field-error" class="form-control"
+                   placeholder="휴대 전화번호 입력">
             <button class="btn-getcode">인증번호 받기</button>
           </div>
+          <div class="field-error" th:errors="*{phoneNumber}"></div>
         </div>
         <div class="agree-term custom-chk">
           <label>

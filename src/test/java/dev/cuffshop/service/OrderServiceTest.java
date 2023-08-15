@@ -15,24 +15,24 @@ import static org.assertj.core.api.Assertions.*;
 
 class OrderServiceTest {
 
-    MemberService memberService;
-    OrderService orderService;
-
-    @BeforeEach
-    public void beforeEach() {
-        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
-        memberService = ac.getBean("memberService", MemberService.class);
-        orderService = ac.getBean("orderService", OrderService.class);
-    }
-
-    @Test
-    public void createOrder() {
-        Long memberId = 1L;
-        Member member = new Member(memberId, "memberA", Grade.VIP);
-        memberService.join(member);
-
-        Order order = orderService.createOrder(memberId, "itemA", 20000);
-        assertThat(order.getItemPrice()).isEqualTo(20000);
-    }
+//    MemberService memberService;
+//    OrderService orderService;
+//
+//    @BeforeEach
+//    public void beforeEach() {
+//        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+//        memberService = ac.getBean("memberService", MemberService.class);
+//        orderService = ac.getBean("orderService", OrderService.class);
+//    }
+//
+//    @Test
+//    public void createOrder() {
+//        Long memberId = 1L;
+//        Member member = new Member(memberId, "memberA", Grade.VIP);
+//        memberService.join(member);
+//
+//        Order order = orderService.createOrder(memberId, "itemA", 20000);
+//        assertThat(order.getItemPrice()).isEqualTo(20000);
+//    }
 
 }

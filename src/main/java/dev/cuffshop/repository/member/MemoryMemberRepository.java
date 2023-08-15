@@ -21,6 +21,10 @@ public class MemoryMemberRepository implements MemberRepository {
         log.info("save: member.getId={}", member.getId());
         log.info("save: member.getEmail={}", member.getEmail());
         log.info("save: member.getPassword={}", member.getPassword());
+        log.info("save: member.getPassword={}", member.getYear());
+        log.info("save: member.getPassword={}", member.getMonthCode());
+        log.info("save: member.getPassword={}", member.getDayCode());
+        log.info("save: member.getPassword={}", member.getPhoneNumber());
         store.put(member.getId(), member);
     }
 
