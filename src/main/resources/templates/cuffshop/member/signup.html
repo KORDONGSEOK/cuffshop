@@ -10,24 +10,33 @@
       <!-- Main Header Include -->
       <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
       <!-- Main Header Include -->
-      <div class="signup-content">
+      <form class="signup-content" th:action th:object="${member}" method="post">
         <div class="signup-field id-pw">
           <span>이메일<em>*</em></span>
-          <input type="email" placeholder="이메일 입력">
+          <input type="email" th:field="*{email}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="이메일 입력">
+          <div class="field-error" th:errors="*{email}"></div>
         </div>
         <div class="signup-field id-pw">
           <span>비밀번호<em>*</em></span>
-          <input type="password" placeholder="비밀번호 입력(영문, 숫자,특수기호 조합 8~16자리)">
+          <input type="password" th:field="*{password}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="비밀번호 입력(영문, 숫자,특수기호 조합 8~16자리)">
+          <div class="field-error" th:errors="*{password}"></div>
         </div>
         <div class="signup-field id-pw">
           <span>비밀번호 확인<em>*</em></span>
-          <input type="password" placeholder="비밀번호 입력(영문, 숫자,특수기호 조합 8~16자리)">
+          <input type="password" th:field="*{passwordCheck}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="비밀번호 입력(영문, 숫자,특수기호 조합 8~16자리)">
+          <div class="field-error" th:errors="*{passwordCheck}"></div>
         </div>
         <div class="signup-field birth">
           <span>생년월일<em>*</em></span>
           <div>
             <input type="text" placeholder="년도(4자리)">
-            <select name="" id="">
+            <select name="" >
               <option value="">월</option>
               <option value="">1월</option>
               <option value="">2월</option>
@@ -42,7 +51,7 @@
               <option value="">11월</option>
               <option value="">12월</option>
             </select>
-            <select name="" id="">
+            <select name="" >
               <option value="">일</option>
             </select>
           </div>
@@ -65,8 +74,8 @@
             <input type="checkbox"><em></em>(선택) 이메일 및 SMS 마케팅 정보 수신 동의합니다.
           </label>
         </div>
-        <button class="btn-primary btn-signup">가입하기</button>
-      </div>
+        <button class="btn-primary btn-signup" type="submit">가입하기</button>
+      </form>
         <!-- GNB include-->
       <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
         <!-- GNB include-->
