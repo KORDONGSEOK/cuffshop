@@ -70,11 +70,6 @@ public class MemberController {
         return "redirect:/cuffshop/login";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "cuffshop/member/signin";
-    }
-
     @GetMapping("/mypage")
     public String mypage() {
         return "cuffshop/member/mypage";

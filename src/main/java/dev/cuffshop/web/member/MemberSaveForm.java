@@ -24,6 +24,4 @@ public class MemberSaveForm {
     @NotEmpty
     private String phoneNumber;
 
-
-
 }

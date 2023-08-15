@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head :: common_header(~{::title},~{::link})">
+  <title>signup - Cuff Shop</title>
+</head>
+<body>
+  <div class="container signup">
+    <div class="signup-inner">
+      <!-- Main Header Include -->
+      <div class="main-header-include" th:replace="fragment/main-header :: copy"></div>
+      <!-- Main Header Include -->
+      <form class="signup-content" th:action th:object="${member}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="signup-field id-pw">
+          <span>이메일<em>*</em></span>
+          <input type="email" th:field="*{email}"
+                 th:errorclass="field-error" class="form-control" disabled
+                 placeholder="이메일 입력">
+          <div class="field-error" th:errors="*{email}"></div>
+        </div>
+        <div class="signup-field id-pw">
+          <span>비밀번호<em>*</em></span>
+          <input type="password" th:field="*{password}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="비밀번호 입력(영문, 숫자,특수기호 조합 8~16자리)">
+          <div class="field-error" th:errors="*{password}"></div>
+        </div>
+        <div class="signup-field id-pw">
+          <span>비밀번호 확인<em>*</em></span>
+          <input type="password" th:field="*{passwordCheck}"
+                 th:errorclass="field-error" class="form-control"
+                 placeholder="비밀번호 입력(영문, 숫자,특수기호 조합 8~16자리)">
+          <div class="field-error" th:errors="*{passwordCheck}"></div>
+        </div>
+        <div class="signup-field birth">
+          <span>생년월일<em>*</em></span>
+          <div>
+            <input type="text" th:field="*{year}"
+                   th:errorclass="field-error" class="form-control"
+                   placeholder="년도(4자리)">
+            <select th:field="*{monthCode}" th:errorclass="field-error" class="form-control">
+              <option value="">월</option>
+              <option th:each="monthCode : ${monthCodes}" th:value="${monthCode.code}"
+                      th:text="${monthCode.displayName}"></option>
+            </select>
+            <select th:field="*{dayCode}" th:errorclass="field-error" class="form-control">
+              <option value="">일</option>
+              <option th:each="dayCode : ${dayCodes}" th:value="${dayCode.code}"
+                      th:text="${dayCode.displayName}"></option>
+            </select>
+          </div>
+          <div class="field-error" th:errors="*{year}"></div>
+        </div>
+        <div class="signup-field phone">
+          <span>휴대전화<em>*</em></span>
+          <div>
+            <input type="text" th:field="*{phoneNumber}"
+                   th:errorclass="field-error" class="form-control"
+                   placeholder="휴대 전화번호 입력">
+            <button class="btn-getcode">인증번호 받기</button>
+          </div>
+          <div class="field-error" th:errors="*{phoneNumber}"></div>
+        </div>
+        <button class="btn-primary btn-signup" type="submit">수정하기</button>
+      </form>
+        <!-- GNB include-->
+      <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
+        <!-- GNB include-->
+    </div>
+  </div>
+</body>
+</html>

@@ -9,14 +9,24 @@
   <div class="container signin">
     <div class="signin-inner">
       <div class="signin-photo"></div>  
-      <div class="signin-content">
+      <form class="signin-content" th:action th:object="${login}" method="post">
           <div class="signin-header">
           <h2 class="logo">Cuff Shop</h2>
           <p>로그인 후 이용하여 다양한 혜택을 만나보세요.</p>
           </div>
+          <div th:if="${#fields.hasGlobalErrors()}">
+              <p class="field-error" th:each="err : ${#fields.globalErrors()}"
+                 th:text="${err}">전체 오류 메시지</p>
+          </div>
           <div class="signin-field">
-            <input type="email" placeholder="이메일 입력"> 
-            <input type="password" placeholder="비밀번호 입력"> 
+            <input type="email" th:field="*{email}"
+                   th:errorclass="field-error" class="form-control"
+                   placeholder="이메일 입력">
+              <div class="field-error" th:errors="*{email}"></div>
+            <input type="password" th:field="*{password}"
+                   th:errorclass="field-error" class="form-control"
+                   placeholder="비밀번호 입력">
+              <div class="field-error" th:errors="*{password}"></div>
           </div>
           <div class="status custom-chk">
             <label>
@@ -24,15 +34,14 @@
             </label>
             <a href="#none">아이디/비밀번호 찾기</a>
           </div>
-          <button class="btn-primary btn-signin"
-                    th:onclick="|lcoation.href='@{/cuffshop/login}'|">로그인</button>
+          <button class="btn-primary btn-signin" type="submit">로그인</button>
           <div class="join-member">
             아직 회원이 아니신가요?<a href="#none" th:href="@{/cuffshop/join}">회원가입</a>
           </div>
           <div class="easy-signin">
 
           </div>
-      </div>
+      </form>
         <!-- GNB include-->
         <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
         <!-- GNB include-->

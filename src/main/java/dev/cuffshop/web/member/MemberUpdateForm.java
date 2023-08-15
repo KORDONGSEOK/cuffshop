@@ -11,8 +11,18 @@ import javax.validation.constraints.NotNull;
 public class MemberUpdateForm {
     @NotNull
     private Long id;
-    @NotNull
+    @Email @NotEmpty
     private String email;
     @NotEmpty
     private String password;
+    @NotEmpty
+    private String passwordCheck;
+    @NotEmpty
+    private String year;
+    @NotEmpty
+    private String monthCode;
+    @NotEmpty
+    private String dayCode;
+    @NotEmpty
+    private String phoneNumber;
 }

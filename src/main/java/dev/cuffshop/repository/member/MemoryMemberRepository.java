@@ -33,12 +33,14 @@ public class MemoryMemberRepository implements MemberRepository {
         return store.get(memberId);
     }
 
+    @Override
     public Optional<Member> findByEmail(String email) {
         return findAll().stream()
                 .filter(m -> m.getEmail().equals(email))
                 .findFirst();
     }
 
+    @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }
