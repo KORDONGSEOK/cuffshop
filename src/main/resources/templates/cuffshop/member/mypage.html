@@ -18,8 +18,6 @@
           <div class="user-summary">
             <div class="rating">
               <b>vip</b>
-              <span>회원 등급 확인하기</span>
-              <button class="btn-setting"><i class="bi bi-gear-fill"></i></button>
             </div>
             <h2 class="nickname">비와우산</h2>
             <div class="point-coupon">
@@ -52,22 +50,26 @@
               </div>
               <div class="desc">
                 <span>HACCP 인증을 받은 닭꼬치 밀키트, 굽기만 하면 끝(10개)</span>
-                <b>배송중(오늘 도착 예정)</b>
+                <b>배송중</b>
               </div>              
           </div>
         </div>
         <div class="banner">
-          <a href="#none"><img src="/images/mypage-banner-03.jpg"></a>
-        </div>
-        <div class="user-shortcut">
 
         </div>
-        <button class="btn-primary gtn-signout">로그아웃</button>
+        <div class="user-shortcut">
+          <a href="#none"><i class="bi bi-person"></i><span>정보수정</span></a>
+          <a href="#none"><i class="bi bi-exclamation-circle"></i><span>공지사항</span></a>
+        </div>
+        <form th:action="@{/cuffshop/logout}" class="gtn-signout-form" method="post">
+          <button class="btn-primary gtn-signout" type="submit">로그아웃</button>
+        </form>
       </div>
       <!-- GNB include-->
         <div class="gnb-include" th:replace="fragment/gnb :: copy"></div>
       <!-- GNB include-->   
     </div>
+  </div>
   </div>
 </body>
 </html>

@@ -1310,8 +1310,11 @@ input[id=food-type-tab6]:checked ~ .food-type-tabs .tab6 {
 .user-shortcut a:nth-child(5) .bi {
     font-size: 20px;
 }
-
+.gtn-signout-form {
+    margin-top: 30px;
+}
 .gtn-signout {
+    margin-top: 30px;
     background-color: var(--gainsboro);
 }
 

@@ -12,7 +12,7 @@
 <body>
 
     <div class="container preloading">
-      <div class="preloading-inner" onclick="location.href='/html/front.html'" th:onclick="|location.href='@{/cuffshop/products}'|">
+      <div class="preloading-inner" onclick="location.href='/html/front.html'" th:onclick="|location.href='@{/cuffshop}'|">
         <div class="heading-preloading">
           <h2 class="logo">Cuff Shop</h2>
           <p class="slogan">
@@ -26,7 +26,7 @@
 
     <script th:inline="javascript">
       /* 1초 후 front.html로 이동 */
-<!--      setTimeout("location.href='/cuffshop/products'",1000)-->
+      setTimeout("location.href='/cuffshop'",2000)
     </script>
 
 </body>
