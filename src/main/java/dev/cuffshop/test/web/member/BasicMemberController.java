@@ -40,7 +40,7 @@ public class BasicMemberController {
      */
     @PostConstruct
     public void init() {
-        memberRepository.save(new Member("test", "테스터", "test1"));
+        memberRepository.save(new Member("test", "테스터", "1234"));
     }
 
 }
