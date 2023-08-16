@@ -4,6 +4,9 @@ import dev.cuffshop.domain.delivery.DeliveryCode;
 import dev.cuffshop.domain.item.Item;
 import dev.cuffshop.domain.item.ItemType;
 import dev.cuffshop.repository.item.ItemRepository;
+import dev.cuffshop.repository.item.ItemSearchCond;
+import dev.cuffshop.repository.item.ItemUpdateDto;
+import dev.cuffshop.service.item.ItemService;
 import dev.cuffshop.test.validation.ItemValidator;
 import dev.cuffshop.test.validation.form.ItemSaveForm;
 import dev.cuffshop.test.validation.form.ItemUpdateForm;
@@ -29,7 +32,7 @@ import java.util.*;
 @RequestMapping("/basic/items")
 @RequiredArgsConstructor
 public class ItemController {
-    private final ItemRepository itemRepository;
+    private final ItemService itemService;
 //    private final ItemValidator itemValidator;
 
 //    @InitBinder
@@ -61,15 +64,15 @@ public class ItemController {
     }
 
     @GetMapping
-    public String items(Model model) {
-        List<Item> items = itemRepository.findAll();
+    public String items(@ModelAttribute("itemSearch")ItemSearchCond itemSearch, Model model) {
+        List<Item> items = itemService.findItems(itemSearch);
         model.addAttribute("items", items);
         return "basic/items";
     }
 
     @GetMapping("/{itemId}")
     public String item(@PathVariable long itemId, Model model) {
-        Item item = itemRepository.findById(itemId);
+        Item item = itemService.findById(itemId).get();
         model.addAttribute("item", item);
         return "basic/item";
     }
@@ -105,7 +108,7 @@ public class ItemController {
         item.setPrice(form.getPrice());
         item.setQuantity(form.getQuantity());
 
-        Item saveItem = itemRepository.save(item);
+        Item saveItem = itemService.save(item);
         redirectAttributes.addAttribute("itemId", saveItem.getId());
         redirectAttributes.addAttribute("status", true);
         return "redirect:/basic/items/{itemId}";
@@ -113,17 +116,17 @@ public class ItemController {
 
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
-        Item item = itemRepository.findById(itemId);
+        Item item = itemService.findById(itemId).get();
         model.addAttribute("item", item);
         return "basic/editForm";
     }
 
     @PostMapping("/{itemId}/edit")
-    public String edit(@PathVariable Long itemId, @Validated @ModelAttribute("item") ItemUpdateForm form, BindingResult bindingResult) {
+    public String edit(@PathVariable Long itemId, @Validated @ModelAttribute("item") ItemUpdateDto updateParam, BindingResult bindingResult) {
 
         //특정 필드 예외가 아닌 전체 예외
-        if (form.getPrice() != null && form.getQuantity() != null) {
-            int resultPrice = form.getPrice() * form.getQuantity();
+        if (updateParam.getPrice() != null && updateParam.getQuantity() != null) {
+            int resultPrice = updateParam.getPrice() * updateParam.getQuantity();
             if (resultPrice < 10000) {
                 bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
             }
@@ -135,11 +138,11 @@ public class ItemController {
         }
 
         Item itemParam = new Item();
-        itemParam.setItemName(form.getItemName());
-        itemParam.setPrice(form.getPrice());
-        itemParam.setQuantity(form.getQuantity());
+        itemParam.setItemName(updateParam.getItemName());
+        itemParam.setPrice(updateParam.getPrice());
+        itemParam.setQuantity(updateParam.getQuantity());
 
-        itemRepository.update(itemId, itemParam);
+        itemService.update(itemId, updateParam);
         return "redirect:/basic/items/{itemId}";
     }
 
@@ -149,11 +152,11 @@ public class ItemController {
      */
     @PostConstruct
     public void init() {
-        itemRepository.save(new Item("itemA", 10000, 10));
-        itemRepository.save(new Item("itemB", 20000, 20));
-        itemRepository.save(new Item("itemC", 30000, 30));
-        itemRepository.save(new Item("itemD", 40000, 40));
-        itemRepository.save(new Item("itemE", 50000, 50));
+        itemService.save(new Item("itemA", 10000, 10));
+        itemService.save(new Item("itemB", 20000, 20));
+        itemService.save(new Item("itemC", 30000, 30));
+        itemService.save(new Item("itemD", 40000, 40));
+        itemService.save(new Item("itemE", 50000, 50));
     }
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dev.cuffshop.repository.product.ProductMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into product
+        (
+        product_name,
+        category_type,
+        price,
+        discount_rate,
+        discount_price,
+        quantity,
+        delivery_info,
+        product_info
+        )values(
+        #{productName},
+        #{categoryType},
+        #{price},
+        #{discountRate},
+        #{discountPrice},
+        #{quantity},
+        #{deliveryInfo},
+        #{productInfo}
+        )
+    </insert>
+</mapper>

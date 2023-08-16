@@ -2,6 +2,7 @@ package dev.cuffshop.domain.product;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotBlank;
 
@@ -13,14 +14,18 @@ public class Product {
 
     private CategoryType categoryType;
 
+    @NumberFormat(pattern = "###,###원")
     private Integer price;
+
     private Integer discountRate;
 
+    @NumberFormat(pattern = "###,###")
     private Integer quantity;
 
     private String deliveryInfo;
 
     private String productInfo;
+    @NumberFormat(pattern = "###,###원")
     private Integer discountPrice;
 
     public Product() {

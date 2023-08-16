@@ -44,7 +44,7 @@
                                         <div class="goods-title">
                                             <h3 th:text="${product.productName}">바다향 가득! 해산물 씨키트 해물 스파게티 밀키트(2인)</h3>
                                             <div>
-                                                <span th:text="${product.discountRate}">30%</span><b th:text="${product.discountPrice}">11,760원</b> <s th:text="${product.price}">16,800원</s>
+                                                <span th:text="${{product.discountRate}}">30%</span><b th:text="${{product.discountPrice}}">11,760원</b> <span th:text="${{product.price}}">16,800원</span>
                                             </div>
                                         </div>
                                     </div>

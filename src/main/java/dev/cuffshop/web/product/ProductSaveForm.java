@@ -4,6 +4,7 @@ import dev.cuffshop.domain.product.CategoryType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
