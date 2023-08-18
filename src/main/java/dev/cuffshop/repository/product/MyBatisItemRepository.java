@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Slf4j
-@Repository
 public class MyBatisItemRepository implements ProductRepository{
 
     private final ProductMapper productMapper;
